@@ -13,16 +13,7 @@ public class MentionTextView: UITextView {
     public var highlightColor: UIColor = UIColor.blue
     public var pattern: ParserPattern = .mention
     
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        delegate = self
-    }
-    
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        delegate = self
-    }
+    var replaceValues: (oldText: String?, range: NSRange?, replacementText: String?) = (nil, nil, nil)
     
     var highlightUsers: [(String, NSRange)] = []        // 맨션 유저의 리스트
     
@@ -44,6 +35,22 @@ public class MentionTextView: UITextView {
             }
         }
     }
+    
+    // MARK: override
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        delegate = self
+        
+        self.autocorrectionType = .no
+    }
+    
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        delegate = self
+        
+        self.autocorrectionType = .no
+    }
+    
 }
 
 // MARK: - Highlight
@@ -103,7 +110,30 @@ extension MentionTextView {
 
 extension MentionTextView: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text.utf16.count > 0 {
+        replaceValues = (textView.text, range, text)
+        return true
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        defer {
+            replaceValues = (nil, nil, nil)
+            refresh()
+        }
+        
+        guard let range = replaceValues.range else {
+            return
+        }
+        
+        guard replaceValues.oldText?.utf16.count != textView.text.utf16.count else {
+            return
+        }
+        
+        guard let replacementText = replaceValues.replacementText else {
+            return
+        }
+        
+        
+        if replacementText.utf16.count > 0 {
             // 텍스트 추가
             
             // check point
@@ -114,7 +144,7 @@ extension MentionTextView: UITextViewDelegate {
             for oldUser in highlightUsers {
                 if range.location <= oldUser.1.location {
                     // 추가하는 시작점이 내 앞쪽(추가하는 만큼 맨션의 위치를 뒤로 이동)
-                    let newRange = NSRange.init(location: max(0, oldUser.1.location + (text.utf16.count - range.length)), length: oldUser.1.length)
+                    let newRange = NSRange.init(location: max(0, oldUser.1.location + (replacementText.utf16.count - range.length)), length: oldUser.1.length)
                     newUsers.append((oldUser.0, newRange))
                 } else if range.location > oldUser.1.location && range.location < oldUser.1.location + oldUser.1.length {
                     // 추가하는 시작점이 내 맨션 안쪽
@@ -162,11 +192,5 @@ extension MentionTextView: UITextViewDelegate {
         highlightUsers.sort(by: { (lhs, rhs) -> Bool in
             return lhs.1.location < rhs.1.location
         })
-        
-        return true
-    }
-    
-    public func textViewDidChange(_ textView: UITextView) {
-        refresh()
     }
 }

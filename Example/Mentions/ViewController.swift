@@ -33,7 +33,9 @@ class ViewController: UIViewController {
 
 extension ViewController {
     @IBAction func pressedConfirm(_ sender: UIButton) {
-        textLabel.text = mentionTextView.text
+//        textLabel.text = mentionTextView.text
+        
+        mentionTextView.mentionText = "test[test]"
     }
 }
 
