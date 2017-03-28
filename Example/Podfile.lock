@@ -12,11 +12,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Mentions:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Mentions: 17abe43dbbc0d479eb29f87ca00c137fe2c7d92d
+  FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
+  Mentions: c00c32aacea71e10382e31f662264e1417bbba8e
 
 PODFILE CHECKSUM: 5f1cc487160907907ff307f780e99b771cf671f0
 

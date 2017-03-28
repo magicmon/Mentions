@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Mentions
 //
-//  Created by sagun25si@gmail.com on 03/27/2017.
-//  Copyright (c) 2017 sagun25si@gmail.com. All rights reserved.
+//  Created by magicmon on 03/27/2017.
+//  Copyright (c) 2017 magicmon. All rights reserved.
 //
 
 import UIKit
