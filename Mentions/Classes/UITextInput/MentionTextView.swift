@@ -40,7 +40,7 @@ public class MentionTextView: UITextView {
                     highlightUsers.append(user, range)
                 }
                 
-                refreshAttributedText()
+                refresh()
             }
         }
     }
