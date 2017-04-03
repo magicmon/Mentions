@@ -12,7 +12,7 @@ public enum ParserPattern: String {
     case custom = "@((?!@).)*"
 }
 
-extension UITextInput {
+extension UIView {
     func parse(_ text: String?, pattern: ParserPattern, template: String) -> (String?, [(String, NSRange)]?) {
         guard var matchText = text else {
             return (nil, nil)
@@ -38,6 +38,20 @@ extension UITextInput {
                 matchUsers.append(data, matchRange)
             }
         }
+        
+        print("\(matchText)")
+        
+        // [, ], /의 개수를 찾아 제거.
+        for user in matchUsers {
+            let string = matchText.substring(to: matchText.index(matchText.startIndex, offsetBy: user.1.location))
+            print("<\(string)>")
+            
+            if let idx = string.characters.index(of: "[") {
+                let pos = string.characters.distance(from: string.startIndex, to: idx)
+                print("Found [ at position \(pos)")
+            }
+        }
+        
         
         // replacing
         matchText = matchText.replacingOccurrences(of: "\\[", with: "[")

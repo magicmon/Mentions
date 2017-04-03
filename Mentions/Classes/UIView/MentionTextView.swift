@@ -17,9 +17,23 @@ public class MentionTextView: UITextView {
     
     var highlightUsers: [(String, NSRange)] = []        // 맨션 유저의 리스트
     
-    public var mentionText: String {
+    public var mentionText: String? {
         get {
-            return self.text
+            var replaceText = self.text
+            replaceText = replaceText?.replacingOccurrences(of: "\\", with: "\\\\")
+            replaceText = replaceText?.replacingOccurrences(of: "[", with: "\\[")
+            replaceText = replaceText?.replacingOccurrences(of: "]", with: "\\]")
+            
+            
+            if highlightUsers.count > 0 {
+                for maps in highlightUsers.reversed() {
+                    replaceText = replaceText?.replacing("[\(maps.0)]", range: maps.1)
+                }
+                
+                return replaceText
+            }
+            
+            return replaceText
         } set {
             let (matchText, matchUsers) = self.parse(newValue, pattern: pattern, template: "$1")
             

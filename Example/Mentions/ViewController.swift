@@ -11,7 +11,7 @@ import Mentions
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var textLabel: MentionLabel!
     
     @IBOutlet weak var mentionTextView: MentionTextView!
     
@@ -19,23 +19,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        mentionTextView.mentionText = "test[test]"
+        mentionTextView.mentionText = "\\[test\\] aaaa [test1] [test2]"
         
         mentionTextView.becomeFirstResponder()
+        
+        textLabel.tapHandler = { (user) in
+            let alert = UIAlertView(title: "", message: user, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
+            alert.show()
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 extension ViewController {
     @IBAction func pressedConfirm(_ sender: UIButton) {
-//        textLabel.text = mentionTextView.text
-        
-        mentionTextView.mentionText = "test[test]"
+        textLabel.text = mentionTextView.mentionText
     }
 }
 
