@@ -42,6 +42,13 @@
                                     <action selector="pressedConfirm:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mmP-XT-waY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snj-AX-2hZ">
+                                <rect key="frame" x="276" y="252" width="36" height="30"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="pressedClear:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="43q-6F-0p2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -51,11 +58,13 @@
                             <constraint firstItem="ZVt-JJ-MmY" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="PRM-XB-WLE"/>
                             <constraint firstItem="ZVt-JJ-MmY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Vrg-q2-nde"/>
                             <constraint firstItem="mCy-BN-0Ls" firstAttribute="top" secondItem="Utm-R2-SOf" secondAttribute="bottom" constant="7.5" id="WUE-2P-CH7"/>
+                            <constraint firstItem="mCy-BN-0Ls" firstAttribute="leading" secondItem="snj-AX-2hZ" secondAttribute="trailing" constant="17" id="Z8Q-8B-Xqo"/>
                             <constraint firstItem="ZVt-JJ-MmY" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="centerY" multiplier="0.1" id="hXe-dN-89Y"/>
                             <constraint firstItem="Utm-R2-SOf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="kKy-MO-Wse"/>
                             <constraint firstItem="Utm-R2-SOf" firstAttribute="top" secondItem="ZVt-JJ-MmY" secondAttribute="bottom" constant="10.5" id="klV-z8-V7Y"/>
                             <constraint firstItem="mCy-BN-0Ls" firstAttribute="trailing" secondItem="Utm-R2-SOf" secondAttribute="trailing" id="kpz-Sj-L8i"/>
                             <constraint firstItem="Utm-R2-SOf" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="vU9-6R-vCC"/>
+                            <constraint firstItem="mCy-BN-0Ls" firstAttribute="top" secondItem="snj-AX-2hZ" secondAttribute="top" id="zq7-b0-BSO"/>
                         </constraints>
                     </view>
                     <connections>

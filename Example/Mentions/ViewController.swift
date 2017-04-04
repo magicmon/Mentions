@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        mentionTextView.mentionText = "\\[test\\] aaaa [test1] [test2]"
+        mentionTextView.mentionText = "001[test2]"
         
         mentionTextView.becomeFirstResponder()
         
@@ -33,11 +33,18 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
 
 extension ViewController {
+    @IBAction func pressedClear(_ sender: Any) {
+        mentionTextView.mentionText = "aaaa[test2]"
+    }
+    
     @IBAction func pressedConfirm(_ sender: UIButton) {
-        textLabel.text = mentionTextView.mentionText
+//        textLabel.text = mentionTextView.mentionText
+        
+        mentionTextView.insert(to: "test1", with: NSRange.init(location: 0, length: 2))
     }
 }
 

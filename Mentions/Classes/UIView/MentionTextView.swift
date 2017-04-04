@@ -69,7 +69,7 @@ public class MentionTextView: UITextView {
 
 // MARK: - Highlight
 extension MentionTextView {
-    func insert(to user: String?, with nsrange: NSRange?) {
+    public func insert(to user: String?, with nsrange: NSRange?) {
         guard let user = user, let nsrange = nsrange else {
             return
         }
@@ -78,13 +78,15 @@ extension MentionTextView {
             return
         }
         
-        // 변환된 맨션을 텍스트뷰에 추가
+        replaceValues = (text, nsrange, "@\(user)")
         
-        // 넣기전 기존의 맨션 위치 재 정렬
-        self.textView(self, shouldChangeTextIn: nsrange, replacementText: "@\(user)")
+        // 변환된 맨션을 텍스트뷰에 추가
         
         // 텍스트 수정(맨션 문자 + 닉네임)
         self.text = self.text.replacingCharacters(in: range, with: "@\(user)")
+        
+        // 맨션 위치 재 정렬
+        self.textViewDidChange(self)
         
         // 리스트에 맨션 영역 추가
         let insertRange = NSRange.init(location: nsrange.location, length: user.utf16.count + 1)
@@ -146,6 +148,7 @@ extension MentionTextView: UITextViewDelegate {
             return
         }
         
+        print("\(replaceValues.range?.location) \(replaceValues.range?.length)")
         
         if replacementText.utf16.count > 0 {
             // 텍스트 추가

@@ -41,7 +41,7 @@ extension UIView {
         
         print("\(matchText)")
         
-        // [, ], /의 개수를 찾아 제거.
+        // TODO: [, ], /의 개수를 찾아 제거.
         for user in matchUsers {
             let string = matchText.substring(to: matchText.index(matchText.startIndex, offsetBy: user.1.location))
             print("<\(string)>")
