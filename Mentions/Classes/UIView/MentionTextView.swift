@@ -136,11 +136,7 @@ extension MentionTextView: UITextViewDelegate {
             refresh()
         }
         
-        guard let range = replaceValues.range else {
-            return
-        }
-        
-        guard replaceValues.oldText?.utf16.count != textView.text.utf16.count else {
+        guard var range = replaceValues.range else {
             return
         }
         
@@ -148,33 +144,44 @@ extension MentionTextView: UITextViewDelegate {
             return
         }
         
-        print("\(replaceValues.range?.location) \(replaceValues.range?.length)")
-        
         if replacementText.utf16.count > 0 {
             // 텍스트 추가
             
-            // check point
-            // 내 맨션 앞인지
-            // 내 맨션 중간인지
-            // 내 맨션 뒤쪽인지
+            // 텍스트를 입력해서 추가했는데도 길이가 변하지 않은 경우
+            // (중성이나 종성을 추가하면 입력했지만 실제로 전체길이에는 영향을 받지 않는다)
+            if replaceValues.oldText?.utf16.count == textView.text.utf16.count && range.length == 0 {
+                return
+            }
+            
             var newUsers: [(String, NSRange)] = []
             for oldUser in highlightUsers {
-                if range.location <= oldUser.1.location {
-                    // 추가하는 시작점이 내 앞쪽(추가하는 만큼 맨션의 위치를 뒤로 이동)
-                    let newRange = NSRange.init(location: max(0, oldUser.1.location + (replacementText.utf16.count - range.length)), length: oldUser.1.length)
-                    newUsers.append((oldUser.0, newRange))
-                } else if range.location > oldUser.1.location && range.location < oldUser.1.location + oldUser.1.length {
-                    // 추가하는 시작점이 내 맨션 안쪽
+                
+                // 추가하는 영역이 내 맨션을 포함하는 경우
+                if range.location < oldUser.1.location + oldUser.1.length && range.location + range.length > oldUser.1.location {
                     continue
                 } else {
-                    // 추가하는 시작점이 내 맨션 뒤쪽
-                    newUsers.append(oldUser)
+                    // 내 영역을 포함하지 않음
+                    
+                    // 내 앞쪽에서 시작해서 앞쪽에서 끝나는지
+                    if range.location + range.length <= oldUser.1.location {
+                        let newRange = NSRange.init(location: max(0, oldUser.1.location + (replacementText.utf16.count - range.length)), length: oldUser.1.length)
+                        newUsers.append((oldUser.0, newRange))
+                    } else {
+                        // 내 뒤쪽에서 시작해서 뒤쪽에서 끝나는지
+                        newUsers.append(oldUser)
+                    }
                 }
             }
             
             highlightUsers = newUsers
         } else {
             // 텍스트 삭제
+            
+            // 지웠는데도 길이가 안변한 경우
+            // (중성이나 종성을 지워도 실제로 전부 지워진게 아니기 때문에 별다른 처리를 하지 않음)
+            if replaceValues.oldText?.utf16.count == textView.text.utf16.count {
+                return
+            }
             
             // 지우는 텍스트에 내 맨션이 포함됐는지 아닌지만 판단하면 된다.
             // 내 맨션이 포함 됐으면, 맨션을 제거하고

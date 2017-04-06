@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        mentionTextView.mentionText = "001[test2]"
+        mentionTextView.mentionText = "123[test2]"
         
         mentionTextView.becomeFirstResponder()
         
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
     @IBAction func pressedClear(_ sender: Any) {
-        mentionTextView.mentionText = "aaaa[test2]"
+        mentionTextView.mentionText = "123[test2]"
     }
     
     @IBAction func pressedConfirm(_ sender: UIButton) {
