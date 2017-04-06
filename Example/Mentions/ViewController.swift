@@ -15,11 +15,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mentionTextView: MentionTextView!
     
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        mentionTextView.mentionText = "123[test2]"
+        mentionTextView.mentionText = ""
         
         mentionTextView.becomeFirstResponder()
         
@@ -29,22 +31,26 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 extension ViewController {
     @IBAction func pressedClear(_ sender: Any) {
-        mentionTextView.mentionText = "123[test2]"
+        mentionTextView.mentionText = ""
+    }
+    
+    @IBAction func pressedAdd(_ sender: UIButton) {
+        mentionTextView.insert(to: textField.text, with: mentionTextView.selectedRange)
+        
+        textField.text = nil
     }
     
     @IBAction func pressedConfirm(_ sender: UIButton) {
-//        textLabel.text = mentionTextView.mentionText
-        
-        mentionTextView.insert(to: "test1", with: NSRange.init(location: 0, length: 2))
+        textLabel.text = mentionTextView.mentionText
     }
 }
 

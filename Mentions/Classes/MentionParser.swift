@@ -7,7 +7,7 @@
 //
 
 public enum ParserPattern: String {
-    case mention = "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣]{1,})\\]"
+    case mention = "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"
     case html = "<a( ){1,}class=(\"at-username\"|'at-username')>(\\s)*(\\d{0,})(\\s)*<( )*\\/a>"
     case custom = "@((?!@).)*"
 }
