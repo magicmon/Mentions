@@ -6,9 +6,17 @@
 [![Support](https://img.shields.io/badge/support-iOS%208%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/) 
 ![Language](https://img.shields.io/badge/Language-%20swift%20%20-blue.svg)
 
-An easy way to add mentions and hashtags
+An easy way to add mentions.
 
-## Usage
+## Demo
+
+<p align="center"><img src="https://raw.githubusercontent.com/magicmon/Mentions/master/Screenshots/Demo.gif" /></p>
+
+## Requirements
+
+* Swift 3.0
+* Xcode 8
+* iOS 8.0+
 
 
 ## Example
@@ -18,13 +26,41 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-TWImageBrowser is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+#### [CocoaPods](http://cocoapods.org) (recommended)
 
-```
+````ruby
+use_frameworks!
+
 pod 'Mentions'
-```
+````
 
+## Usage
+
+````swift
+var mentionTextView = MentionTextView()
+view.addSubview(mentionTextView)
+
+// initial text with mention.
+mentionTextView.mentionText = "who is your favorite actor or actress? I like [Will Smith] and [Robert Pattinson] the best."
+
+// add to mention.
+mentionTextView.insert(to: "Leonardo DiCaprio", with: mentionTextView.selectedRange)
+````
+
+If you want to show the text that contains the mention, set it as follows. 
+
+````swift
+var textLabel = MentionLabel()
+view.addSubview(textLabel)
+
+textLabel.text = mentionTextView.mentionText
+
+// show the mention text.
+textLabel.tapHandler = { (mention) in
+  let alert = UIAlertView(title: "", message: user, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
+  alert.show()
+}
+````
 
 ## Author
 

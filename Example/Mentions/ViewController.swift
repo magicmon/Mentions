@@ -25,8 +25,8 @@ class ViewController: UIViewController {
         
         mentionTextView.becomeFirstResponder()
         
-        textLabel.tapHandler = { (user) in
-            let alert = UIAlertView(title: "", message: user, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
+        textLabel.tapHandler = { (mention) in
+            let alert = UIAlertView(title: "", message: mention, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
             alert.show()
         }
     }
@@ -41,6 +41,7 @@ class ViewController: UIViewController {
 extension ViewController {
     @IBAction func pressedClear(_ sender: Any) {
         mentionTextView.mentionText = ""
+        textLabel.text = ""
     }
     
     @IBAction func pressedAdd(_ sender: UIButton) {
