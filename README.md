@@ -54,9 +54,13 @@ view.addSubview(textLabel)
 
 textLabel.text = mentionTextView.mentionText
 
+// or Add the text of the mention inside special characters "[]".
+textLabel.text = "[Brad Pitt]"
+
+
 // show the mention text.
 textLabel.tapHandler = { (mention) in
-  let alert = UIAlertView(title: "", message: user, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
+  let alert = UIAlertView(title: "", message: mention, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
   alert.show()
 }
 ````
