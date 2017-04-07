@@ -4,7 +4,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Mentions (0.1.0)
+  - Mentions (0.1.1)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
-  Mentions: faa1a9602511fc7d1379b835b44225a8797b0a52
+  Mentions: d566c3e1aafc7314779a6bbf032b462cda93d289
 
 PODFILE CHECKSUM: 5f1cc487160907907ff307f780e99b771cf671f0
 
