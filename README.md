@@ -9,8 +9,7 @@
 An easy way to add mentions.
 
 ## Demo
-
-<p align="center"><img src="https://raw.githubusercontent.com/magicmon/Mentions/master/Screenshots/Demo.gif" /></p>
+![Demo](https://raw.githubusercontent.com/magicmon/Mentions/master/Screenshots/Demo.gif)
 
 ## Requirements
 
