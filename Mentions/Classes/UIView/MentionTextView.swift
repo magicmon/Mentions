@@ -78,10 +78,12 @@ extension MentionTextView {
             return
         }
         
-        // 추가하려는 텍스트의 range 위치 셋팅.
-        var convertLength = min(text.utf16.count, nsrange.location + nsrange.length)
-        if convertLength >= text.utf16.count { convertLength = 0 }
-        nsrange = NSRange.init(location: min(text.utf16.count, nsrange.location), length: convertLength)
+        // 추가하려는 텍스트의 range 위치 셋팅. 범위가 넘어가면 해당 범위까지만 셋팅.
+        var rangeLength = nsrange.length
+        if nsrange.location + nsrange.length > text.utf16.count {
+            rangeLength = nsrange.length - (nsrange.location + nsrange.length - text.utf16.count)
+        }
+        nsrange = NSRange.init(location: min(text.utf16.count, nsrange.location), length: rangeLength)
         guard let range = self.text.rangeFromNSRange(nsrange) else {
             return
         }
