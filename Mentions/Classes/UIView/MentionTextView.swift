@@ -70,14 +70,23 @@ public class MentionTextView: UITextView {
 // MARK: - Highlight
 extension MentionTextView {
     public func insert(to user: String?, with nsrange: NSRange?) {
-        guard let user = user, let nsrange = nsrange else {
+        guard let user = user, var nsrange = nsrange else {
             return
         }
         
+        guard user.utf16.count > 0 else {
+            return
+        }
+        
+        // 추가하려는 텍스트의 range 위치 셋팅.
+        var convertLength = min(text.utf16.count, nsrange.location + nsrange.length)
+        if convertLength >= text.utf16.count { convertLength = 0 }
+        nsrange = NSRange.init(location: min(text.utf16.count, nsrange.location), length: convertLength)
         guard let range = self.text.rangeFromNSRange(nsrange) else {
             return
         }
         
+        // 변환 값 셋팅
         replaceValues = (text, nsrange, "@\(user)")
         
         // 변환된 맨션을 텍스트뷰에 추가

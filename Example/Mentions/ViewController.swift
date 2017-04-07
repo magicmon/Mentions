@@ -47,6 +47,8 @@ extension ViewController {
         mentionTextView.insert(to: textField.text, with: mentionTextView.selectedRange)
         
         textField.text = nil
+        
+        textField.resignFirstResponder()
     }
     
     @IBAction func pressedConfirm(_ sender: UIButton) {
