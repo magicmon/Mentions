@@ -145,7 +145,7 @@ extension MentionTextView: UITextViewDelegate {
             refresh()
         }
         
-        guard var range = replaceValues.range else {
+        guard let range = replaceValues.range else {
             return
         }
         

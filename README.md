@@ -6,7 +6,7 @@
 [![Support](https://img.shields.io/badge/support-iOS%208%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/) 
 ![Language](https://img.shields.io/badge/Language-%20swift%20%20-blue.svg)
 
-An easy way to add mentions.
+An easy way to add mentions in UITextView.
 
 ## Demo
 ![Demo](https://raw.githubusercontent.com/magicmon/Mentions/master/Screenshots/Demo.gif)

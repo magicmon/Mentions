@@ -42,15 +42,15 @@ extension UIView {
         // print("\(matchText)")
         
         // TODO: [, ], /의 개수를 찾아 제거.
-        for user in matchUsers {
-            let string = matchText.substring(to: matchText.index(matchText.startIndex, offsetBy: user.1.location))
-            // print("<\(string)>")
-            
-            if let idx = string.characters.index(of: "[") {
-                let pos = string.characters.distance(from: string.startIndex, to: idx)
-                // print("Found [ at position \(pos)")
-            }
-        }
+//        for user in matchUsers {
+//            let string = matchText.substring(to: matchText.index(matchText.startIndex, offsetBy: user.1.location))
+//             print("<\(string)>")
+//            
+//            if let idx = string.characters.index(of: "[") {
+//                let pos = string.characters.distance(from: string.startIndex, to: idx)
+//                print("Found [ at position \(pos)")
+//            }
+//        }
         
         
         // replacing
