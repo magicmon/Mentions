@@ -10,7 +10,7 @@ import UIKit
 
 public class MentionTextView: UITextView {
     
-    public var highlightColor: UIColor = UIColor.blue
+    @IBInspectable public var highlightColor: UIColor = UIColor.blue
     public var pattern: ParserPattern = .mention
     
     var replaceValues: (oldText: String?, range: NSRange?, replacementText: String?) = (nil, nil, nil)
@@ -69,14 +69,12 @@ public class MentionTextView: UITextView {
 
 // MARK: - Highlight
 extension MentionTextView {
-    public func insert(to user: String?, with nsrange: NSRange?) {
-        guard let user = user, var nsrange = nsrange else {
-            return
-        }
+    public func insert(to user: String?, with nsrange: NSRange? = nil) {
+        guard let user = user else { return }
         
-        guard user.utf16.count > 0 else {
-            return
-        }
+        guard user.utf16.count > 0 else { return }
+        
+        var nsrange = nsrange ?? self.selectedRange
         
         // 추가하려는 텍스트의 range 위치 셋팅. 범위가 넘어가면 해당 범위까지만 셋팅.
         var rangeLength = nsrange.length

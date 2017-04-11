@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,7 +44,7 @@ extension ViewController {
     }
     
     @IBAction func pressedAdd(_ sender: UIButton) {
-        mentionTextView.insert(to: textField.text, with: mentionTextView.selectedRange)
+        mentionTextView.insert(to: textField.text)
         
         textField.text = nil
         

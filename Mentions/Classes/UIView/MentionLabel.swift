@@ -18,7 +18,7 @@ public class MentionLabel: UILabel {
     fileprivate var clickableRanges: [NSRange] = []
     fileprivate var selectedRange: NSRange?
     
-    public var highlightColor: UIColor = UIColor.blue
+    @IBInspectable public var highlightColor: UIColor = UIColor.blue
     public var pattern: ParserPattern = .mention
     
     public var tapHandler: ((String) -> ())?
