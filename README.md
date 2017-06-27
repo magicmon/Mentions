@@ -67,7 +67,7 @@ textLabel.tapHandler = { (mention) in
 
 ## Author
 
-magicmon, http://magicmon.tistory.com
+magicmon, http://magicmon.github.io
 
 ## License
 
