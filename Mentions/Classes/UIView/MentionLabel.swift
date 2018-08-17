@@ -19,6 +19,7 @@ public class MentionLabel: UILabel {
     fileprivate var selectedRange: NSRange?
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
+    @IBInspectable public var prefixMention: String = "@"
     public var pattern: ParserPattern = .mention
     
     public var tapHandler: ((String) -> ())?
@@ -27,7 +28,7 @@ public class MentionLabel: UILabel {
         didSet {
             clickableRanges.removeAll()
             
-            let (matchText, matchUsers) = self.parse(self.text, pattern: pattern, template: "$1")
+            let (matchText, matchUsers) = self.parse(self.text, pattern: pattern, template: "$1", prefixMention: prefixMention)
             
             if let matchText = matchText {
                 var attributes = [NSAttributedStringKey.font: self.font,

@@ -13,7 +13,7 @@ public enum ParserPattern: String {
 }
 
 extension UIView {
-    func parse(_ text: String?, pattern: ParserPattern, template: String) -> (String?, [(String, NSRange)]?) {
+    func parse(_ text: String?, pattern: ParserPattern, template: String, prefixMention: String = "@") -> (String?, [(String, NSRange)]?) {
         guard var matchText = text else {
             return (nil, nil)
         }
@@ -30,10 +30,10 @@ extension UIView {
             let data = firstFindedText.replacingOccurrences(of: pattern.rawValue, with: template, options: .regularExpression, range: firstFindedText.range(of: firstFindedText))
             
             if data.count > 0 {
-                matchText = matchText.replacing(pattern: pattern, range: match.range, withTemplate: "@\(template)")
+                matchText = matchText.replacing(pattern: pattern, range: match.range, withTemplate: "\(prefixMention)\(template)")
                 
                 let matchRange = NSRange(location: match.range.location, length: data.utf16.count + 1)
-                matchText = matchText.replacing("@\(data)", range: matchRange)
+                matchText = matchText.replacing("\(prefixMention)\(data)", range: matchRange)
                 
                 matchUsers.append((data, matchRange))
             }

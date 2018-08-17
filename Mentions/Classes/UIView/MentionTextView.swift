@@ -11,6 +11,7 @@ import UIKit
 public class MentionTextView: UITextView {
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
+    @IBInspectable public var prefixMention: String = "@"
     public var pattern: ParserPattern = .mention
     
     var replaceValues: (oldText: String?, range: NSRange?, replacementText: String?) = (nil, nil, nil)
@@ -35,7 +36,7 @@ public class MentionTextView: UITextView {
             
             return replaceText
         } set {
-            let (matchText, matchUsers) = self.parse(newValue, pattern: pattern, template: "$1")
+            let (matchText, matchUsers) = self.parse(newValue, pattern: pattern, template: "$1", prefixMention: prefixMention)
             
             self.text = matchText
             
@@ -87,12 +88,12 @@ extension MentionTextView {
         }
         
         // 변환 값 셋팅
-        replaceValues = (text, nsrange, "@\(user)")
+        replaceValues = (text, nsrange, "\(prefixMention)\(user)")
         
         // 변환된 맨션을 텍스트뷰에 추가
         
         // 텍스트 수정(맨션 문자 + 닉네임)
-        self.text = self.text.replacingCharacters(in: range, with: "@\(user)")
+        self.text = self.text.replacingCharacters(in: range, with: "\(prefixMention)\(user)")
         
         // 맨션 위치 재 정렬
         self.textViewDidChange(self)
