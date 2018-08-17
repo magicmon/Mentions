@@ -42,7 +42,7 @@ public class MentionTextView: UITextView {
             if let matchUsers = matchUsers {
                 highlightUsers.removeAll()
                 for (user, range) in matchUsers {
-                    highlightUsers.append(user, range)
+                    highlightUsers.append((user, range))
                 }
                 
                 refresh()
