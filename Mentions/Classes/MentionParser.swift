@@ -29,13 +29,13 @@ extension UIView {
             
             let data = firstFindedText.replacingOccurrences(of: pattern.rawValue, with: template, options: .regularExpression, range: firstFindedText.range(of: firstFindedText))
             
-            if data.characters.count > 0 {
+            if data.count > 0 {
                 matchText = matchText.replacing(pattern: pattern, range: match.range, withTemplate: "@\(template)")
                 
                 let matchRange = NSRange(location: match.range.location, length: data.utf16.count + 1)
                 matchText = matchText.replacing("@\(data)", range: matchRange)
                 
-                matchUsers.append(data, matchRange)
+                matchUsers.append((data, matchRange))
             }
         }
         

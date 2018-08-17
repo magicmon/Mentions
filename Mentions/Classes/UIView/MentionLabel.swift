@@ -30,7 +30,8 @@ public class MentionLabel: UILabel {
             let (matchText, matchUsers) = self.parse(self.text, pattern: pattern, template: "$1")
             
             if let matchText = matchText {
-                var attributes = [NSFontAttributeName: self.font, NSForegroundColorAttributeName : self.textColor] as [String : Any]
+                var attributes = [NSAttributedStringKey.font: self.font,
+                                  NSAttributedStringKey.foregroundColor: self.textColor] as [NSAttributedStringKey : Any]
                 let muAttrString = NSAttributedString(string: matchText)
                 textStorage.setAttributedString(muAttrString)
                 textStorage.setAttributes(attributes, range: NSRange(location: 0, length: muAttrString.length))
@@ -39,7 +40,7 @@ public class MentionLabel: UILabel {
                 if let matchUsers = matchUsers {
                     for (_, range) in matchUsers {
                         clickableRanges.append(range)
-                        attributes[NSForegroundColorAttributeName] = highlightColor
+                        attributes[NSAttributedStringKey.foregroundColor] = highlightColor
                         textStorage.setAttributes(attributes, range: range)
                     }
                 }

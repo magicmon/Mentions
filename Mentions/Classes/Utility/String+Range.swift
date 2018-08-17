@@ -25,13 +25,6 @@ extension String {
             let from = from16.samePosition(in: self),
             let to = to16.samePosition(in: self)
             else { return self }
-        return substring(with: from..<to)
-    }
-    
-    func NSRangeFromRange(_ range : Range<String.Index>) -> NSRange {
-        let from = range.lowerBound.samePosition(in: utf16)
-        let to = range.upperBound.samePosition(in: utf16)
-        return NSRange(location: utf16.distance(from: utf16.startIndex, to: from),
-                       length: utf16.distance(from: from, to: to))
+        return String(self[from..<to])
     }
 }

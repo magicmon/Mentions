@@ -9,10 +9,9 @@
 import UIKit
 
 extension String {
-    
     func replacePrefix(_ prefix: String, replacement: String) -> String {
         if hasPrefix(prefix) {
-            return replacement + substring(from: prefix.endIndex)
+            return replacement + String(self[prefix.endIndex...])
         } else {
             return self
         }
@@ -20,7 +19,7 @@ extension String {
     
     func removePrefix(_ prefix: String) -> String {
         if hasPrefix(prefix) {
-            return substring(from: prefix.endIndex)
+            return String(self[prefix.endIndex...])
         } else {
             return self
         }
@@ -28,7 +27,7 @@ extension String {
     
     func removeSuffix(_ suffix: String) -> String {
         if hasSuffix(suffix) {
-            return substring(to: self.characters.index(self.endIndex, offsetBy: -suffix.characters.count))
+            return String(self[..<self.index(self.endIndex, offsetBy: -suffix.count)])
         } else {
             return self
         }
