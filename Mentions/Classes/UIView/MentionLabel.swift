@@ -31,8 +31,8 @@ public class MentionLabel: UILabel {
             let (matchText, matchUsers) = self.parse(self.text, pattern: pattern, template: "$1", prefixMention: prefixMention)
             
             if let matchText = matchText {
-                var attributes = [NSAttributedStringKey.font: self.font,
-                                  NSAttributedStringKey.foregroundColor: self.textColor] as [NSAttributedStringKey : Any]
+                var attributes = [NSAttributedString.Key.font: self.font ?? UIFont.systemFontSize,
+                                  NSAttributedString.Key.foregroundColor: self.textColor ?? .black] as [NSAttributedString.Key : Any]
                 let muAttrString = NSAttributedString(string: matchText)
                 textStorage.setAttributedString(muAttrString)
                 textStorage.setAttributes(attributes, range: NSRange(location: 0, length: muAttrString.length))
@@ -41,7 +41,7 @@ public class MentionLabel: UILabel {
                 if let matchUsers = matchUsers {
                     for (_, range) in matchUsers {
                         clickableRanges.append(range)
-                        attributes[NSAttributedStringKey.foregroundColor] = highlightColor
+                        attributes[NSAttributedString.Key.foregroundColor] = highlightColor
                         textStorage.setAttributes(attributes, range: range)
                     }
                 }
@@ -152,6 +152,8 @@ extension MentionLabel {
         case .cancelled:
             selectedRange = nil
         case .stationary:
+            break
+        default:
             break
         }
         

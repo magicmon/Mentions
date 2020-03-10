@@ -26,8 +26,9 @@ class ViewController: UIViewController {
         mentionTextView.becomeFirstResponder()
         
         textLabel.tapHandler = { (mention) in
-            let alert = UIAlertView(title: "", message: mention, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "", message: mention, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
