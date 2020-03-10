@@ -1,10 +1,18 @@
 # Mentions
-
-[![Version](https://img.shields.io/cocoapods/v/WCLShineButton.svg?style=flat)](http://cocoapods.org/pods/WCLShineButton)
-[![License](https://img.shields.io/cocoapods/l/WCLShineButton.svg?style=flat)](http://cocoapods.org/pods/WCLShineButton)
-[![Platform](https://img.shields.io/cocoapods/p/WCLShineButton.svg?style=flat)](http://cocoapods.org/pods/WCLShineButton)
-[![Support](https://img.shields.io/badge/support-iOS%208%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/) 
-![Language](https://img.shields.io/badge/Language-%20swift%20%20-blue.svg)
+<p>
+   <a href="https://developer.apple.com/swift/">
+      <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0">
+   </a>
+   <a href="http://cocoapods.org/pods/Mentions">
+      <img src="https://img.shields.io/cocoapods/v/Mentions.svg?style=flat" alt="Version">
+   </a>
+   <a href="http://cocoapods.org/pods/Mentions">
+      <img src="https://img.shields.io/cocoapods/p/Mentions.svg?style=flat" alt="Platform">
+   </a>
+   <a href="http://cocoapods.org/pods/Mentions">
+      <img src="https://img.shields.io/cocoapods/l/Mentions.svg?style=flat" alt="License">
+   </a>
+</p>
 
 An easy way to add mentions in UITextView.
 
