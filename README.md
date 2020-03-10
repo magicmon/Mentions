@@ -13,9 +13,9 @@ An easy way to add mentions in UITextView.
 
 ## Requirements
 
-* Swift 3.0
-* Xcode 8
-* iOS 8.0+
+* Swift 5.0
+* Xcode 11
+* iOS 10.0+
 
 
 ## Example
