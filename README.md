@@ -49,6 +49,7 @@ view.addSubview(mentionTextView)
 
 // initial text with mention.
 mentionTextView.mentionText = "who is your favorite actor or actress? I like [Will Smith] and [Robert Pattinson] the best."
+mentionTextView.deleteType = .cancel // or .delete
 
 // add to mention.
 mentionTextView.insert(to: "Leonardo DiCaprio", with: mentionTextView.selectedRange)
