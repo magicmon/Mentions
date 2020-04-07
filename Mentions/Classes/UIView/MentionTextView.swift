@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum MentionDeleteType {
+    case cancel  // cancel mention(changed text)
+    case delete  // delete mention
+}
+
 public class MentionTextView: UITextView {
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
@@ -16,7 +21,9 @@ public class MentionTextView: UITextView {
     
     var replaceValues: (oldText: String?, range: NSRange?, replacementText: String?) = (nil, nil, nil)
     
-    var highlightUsers: [(String, NSRange)] = []        // 맨션 유저의 리스트
+    var highlightUsers: [(String, NSRange)] = []        // list for mention user
+    
+    public var deleteType: MentionDeleteType = .cancel
     
     public var mentionText: String? {
         get {
@@ -155,10 +162,10 @@ extension MentionTextView: UITextViewDelegate {
         }
         
         if replacementText.utf16.count > 0 {
-            // 텍스트 추가
+            // insert Text
             
-            // 텍스트를 입력해서 추가했는데도 길이가 변하지 않은 경우
-            // (중성이나 종성을 추가하면 입력했지만 실제로 전체길이에는 영향을 받지 않는다)
+            // If the length does not change even after adding text
+            // (If you add neutral or vertical, it is entered, but it does not actually affect the overall length)
             if replaceValues.oldText?.utf16.count == textView.text.utf16.count && range.length == 0 {
                 return
             }
@@ -185,36 +192,45 @@ extension MentionTextView: UITextViewDelegate {
             
             highlightUsers = newUsers
         } else {
-            // 텍스트 삭제
+            // remove Text
             
-            // 지웠는데도 길이가 안변한 경우
-            // (중성이나 종성을 지워도 실제로 전부 지워진게 아니기 때문에 별다른 처리를 하지 않음)
+            // If the length remains unchanged even after erasing
+            // (Even if you delete a neutral or a species, it doesn't actually delete them.) << only unicode case.
             if replaceValues.oldText?.utf16.count == textView.text.utf16.count {
                 return
             }
             
-            // 지우는 텍스트에 내 맨션이 포함됐는지 아닌지만 판단하면 된다.
-            // 내 맨션이 포함 됐으면, 맨션을 제거하고
-            // 그렇지 않으면 맨션의 location을 지우는 텍스트 만큼 앞으로 당긴다
+            // Check whether a mention is included while deleting text.
+            // If my mention is included, remove the mention
+            // otherwise pull forward as much as the text to delete the location of the mention.
             var newUsers: [(String, NSRange)] = []
+            var removeRange = range
+            
             for oldUser in highlightUsers {
-                
-                if range.location >= oldUser.1.location + oldUser.1.length {
-                    // 지우는 시작점이 내 맨션 뒤쪽(지우는거에 영향을 안받음)
+                if removeRange.location >= oldUser.1.location + oldUser.1.length {
+                    // The starting point of erasing is behind my mention (not affected by erasing)
                     newUsers.append(oldUser)
-                } else if range.location >= oldUser.1.location && range.location < oldUser.1.location + oldUser.1.length {
-                    // 지우는 시작점이 내 맨션 안쪽(기 적용된 맨션 제거)
+                } else if removeRange.location >= oldUser.1.location && removeRange.location < oldUser.1.location + oldUser.1.length {
+                    // The starting point to erase is inside my mention (removing the existing mention)
+                    
+                    if deleteType == .delete {
+                        let range = NSRange(location: oldUser.1.location, length: oldUser.1.length - removeRange.length)
+                        self.text = self.text.replacing("", range: range)
+                        
+                        removeRange = oldUser.1
+                    }
+                    
                     continue
                 } else {
-                    // 지우는 시작점이 내 맨션 앞쪽
+                    // The starting point to erase is in front of my mention
                     
-                    // 지우는 끝지점이 내 맨션안에 있는지, 넘어가는지(이 때만 기 적용된 맨션 제거)
-                    if range.location + range.length > oldUser.1.location {
+                    // Determining whether the end point to be erased is in or out of my mention (only the mention that was applied at this time is removed).
+                    if removeRange.location + removeRange.length > oldUser.1.location {
                         continue
                     } else {
-                        // 내 앞쪽에서 맨션을 지우는 중
-                        // 지우는 만큼 맨션의 위치를 앞으로 땡긴다.
-                        let newRange = NSRange.init(location: max(0, oldUser.1.location - range.length), length: oldUser.1.length)
+                        // Erasing the mention from my front
+                        // As much as you erase, the mention is positioned forward.
+                        let newRange = NSRange(location: max(0, oldUser.1.location - removeRange.length), length: oldUser.1.length)
                         newUsers.append((oldUser.0, newRange))
                     }
                 }

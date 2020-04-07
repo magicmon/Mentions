@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         mentionTextView.mentionText = ""
+        mentionTextView.deleteType = .cancel // or .delete
         
         mentionTextView.becomeFirstResponder()
         

@@ -4,14 +4,14 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Mentions (1.0.0)
+  - Mentions (1.0.1)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
   - Mentions (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - FBSnapshotTestCase
 
 EXTERNAL SOURCES:
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Mentions: 498ed6f0ee7e230a2be980e98804f280e48311c0
+  Mentions: 57d33a2f6a1850f079bc7d81972930c7ac118344
 
 PODFILE CHECKSUM: 5f1cc487160907907ff307f780e99b771cf671f0
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1
