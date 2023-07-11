@@ -9,7 +9,7 @@ import UIKit
 
 public enum ParserPattern: String {
     case mention = "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"
-    case html = "<a( ){1,}class=(\"at-username\"|'at-username')>(\\s)*(\\d{0,})(\\s)*<( )*\\/a>"
+    case html = "\\[\\b(https?://[\\w\\d-]+(\\.[\\w\\d-]+)*\\.[\\w\\d]{2,}(?:/[\\w\\d-./?%&=]*)?)\\b\\]"
     case custom = "@((?!@).)*"
 }
 
@@ -33,26 +33,12 @@ extension UIView {
             if data.count > 0 {
                 matchText = matchText.replacing(pattern: pattern, range: match.range, withTemplate: "\(prefixMention)\(template)")
                 
-                let matchRange = NSRange(location: match.range.location, length: data.utf16.count + 1)
+                let matchRange = NSRange(location: match.range.location, length: data.utf16.count + prefixMention.utf16.count)
                 matchText = matchText.replacing("\(prefixMention)\(data)", range: matchRange)
                 
                 matchUsers.append((data, matchRange))
             }
         }
-        
-        // print("\(matchText)")
-        
-        // TODO: [, ], /의 개수를 찾아 제거.
-//        for user in matchUsers {
-//            let string = matchText.substring(to: matchText.index(matchText.startIndex, offsetBy: user.1.location))
-//             print("<\(string)>")
-//            
-//            if let idx = string.characters.index(of: "[") {
-//                let pos = string.characters.distance(from: string.startIndex, to: idx)
-//                print("Found [ at position \(pos)")
-//            }
-//        }
-        
         
         // replacing
         matchText = matchText.replacingOccurrences(of: "\\[", with: "[")
