@@ -13,13 +13,13 @@
 		CEAD446D2A5D95A8003EF03D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAD446B2A5D95A8003EF03D /* Main.storyboard */; };
 		CEAD446F2A5D95A9003EF03D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD446E2A5D95A9003EF03D /* Assets.xcassets */; };
 		CEAD44722A5D95A9003EF03D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAD44702A5D95A9003EF03D /* LaunchScreen.storyboard */; };
-		CEAD44832A5D9739003EF03D /* MentionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD447B2A5D9739003EF03D /* MentionLabel.swift */; };
-		CEAD44842A5D9739003EF03D /* MentionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD447C2A5D9739003EF03D /* MentionTextView.swift */; };
-		CEAD44852A5D9739003EF03D /* MentionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD447D2A5D9739003EF03D /* MentionParser.swift */; };
-		CEAD44862A5D9739003EF03D /* Mentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD447E2A5D9739003EF03D /* Mentions.swift */; };
-		CEAD44872A5D9739003EF03D /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD44802A5D9739003EF03D /* String+Range.swift */; };
-		CEAD44882A5D9739003EF03D /* AttributedTextUtility+Append.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD44812A5D9739003EF03D /* AttributedTextUtility+Append.swift */; };
-		CEAD44892A5D9739003EF03D /* String+Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD44822A5D9739003EF03D /* String+Prefix.swift */; };
+		CEFAF8FA2A5D9C2B00E9A6A7 /* MentionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F22A5D9C2B00E9A6A7 /* MentionLabel.swift */; };
+		CEFAF8FB2A5D9C2B00E9A6A7 /* MentionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F32A5D9C2B00E9A6A7 /* MentionTextView.swift */; };
+		CEFAF8FC2A5D9C2B00E9A6A7 /* MentionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F42A5D9C2B00E9A6A7 /* MentionParser.swift */; };
+		CEFAF8FD2A5D9C2B00E9A6A7 /* Mentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F52A5D9C2B00E9A6A7 /* Mentions.swift */; };
+		CEFAF8FE2A5D9C2B00E9A6A7 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F72A5D9C2B00E9A6A7 /* String+Range.swift */; };
+		CEFAF8FF2A5D9C2B00E9A6A7 /* AttributedTextUtility+Append.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F82A5D9C2B00E9A6A7 /* AttributedTextUtility+Append.swift */; };
+		CEFAF9002A5D9C2B00E9A6A7 /* String+Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFAF8F92A5D9C2B00E9A6A7 /* String+Prefix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,13 +31,13 @@
 		CEAD446E2A5D95A9003EF03D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAD44712A5D95A9003EF03D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAD44732A5D95A9003EF03D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEAD447B2A5D9739003EF03D /* MentionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionLabel.swift; sourceTree = "<group>"; };
-		CEAD447C2A5D9739003EF03D /* MentionTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTextView.swift; sourceTree = "<group>"; };
-		CEAD447D2A5D9739003EF03D /* MentionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionParser.swift; sourceTree = "<group>"; };
-		CEAD447E2A5D9739003EF03D /* Mentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentions.swift; sourceTree = "<group>"; };
-		CEAD44802A5D9739003EF03D /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
-		CEAD44812A5D9739003EF03D /* AttributedTextUtility+Append.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AttributedTextUtility+Append.swift"; sourceTree = "<group>"; };
-		CEAD44822A5D9739003EF03D /* String+Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Prefix.swift"; sourceTree = "<group>"; };
+		CEFAF8F22A5D9C2B00E9A6A7 /* MentionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionLabel.swift; sourceTree = "<group>"; };
+		CEFAF8F32A5D9C2B00E9A6A7 /* MentionTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTextView.swift; sourceTree = "<group>"; };
+		CEFAF8F42A5D9C2B00E9A6A7 /* MentionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionParser.swift; sourceTree = "<group>"; };
+		CEFAF8F52A5D9C2B00E9A6A7 /* Mentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentions.swift; sourceTree = "<group>"; };
+		CEFAF8F72A5D9C2B00E9A6A7 /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
+		CEFAF8F82A5D9C2B00E9A6A7 /* AttributedTextUtility+Append.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AttributedTextUtility+Append.swift"; sourceTree = "<group>"; };
+		CEFAF8F92A5D9C2B00E9A6A7 /* String+Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Prefix.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 		CEAD44592A5D95A8003EF03D = {
 			isa = PBXGroup;
 			children = (
-				CEAD44792A5D9739003EF03D /* Mentions */,
+				CEFAF8F02A5D9C2B00E9A6A7 /* Mentions */,
 				CEAD44642A5D95A8003EF03D /* MentionsSample */,
 				CEAD44632A5D95A8003EF03D /* Products */,
 			);
@@ -82,33 +82,33 @@
 			path = MentionsSample;
 			sourceTree = "<group>";
 		};
-		CEAD44792A5D9739003EF03D /* Mentions */ = {
+		CEFAF8F02A5D9C2B00E9A6A7 /* Mentions */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD447F2A5D9739003EF03D /* Utility */,
-				CEAD447A2A5D9739003EF03D /* UIView */,
-				CEAD447D2A5D9739003EF03D /* MentionParser.swift */,
-				CEAD447E2A5D9739003EF03D /* Mentions.swift */,
+				CEFAF8F12A5D9C2B00E9A6A7 /* UIView */,
+				CEFAF8F62A5D9C2B00E9A6A7 /* Utility */,
+				CEFAF8F52A5D9C2B00E9A6A7 /* Mentions.swift */,
+				CEFAF8F42A5D9C2B00E9A6A7 /* MentionParser.swift */,
 			);
 			name = Mentions;
-			path = ../Mentions;
+			path = ../Sources/Mentions;
 			sourceTree = "<group>";
 		};
-		CEAD447A2A5D9739003EF03D /* UIView */ = {
+		CEFAF8F12A5D9C2B00E9A6A7 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD447B2A5D9739003EF03D /* MentionLabel.swift */,
-				CEAD447C2A5D9739003EF03D /* MentionTextView.swift */,
+				CEFAF8F22A5D9C2B00E9A6A7 /* MentionLabel.swift */,
+				CEFAF8F32A5D9C2B00E9A6A7 /* MentionTextView.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
 		};
-		CEAD447F2A5D9739003EF03D /* Utility */ = {
+		CEFAF8F62A5D9C2B00E9A6A7 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				CEAD44802A5D9739003EF03D /* String+Range.swift */,
-				CEAD44812A5D9739003EF03D /* AttributedTextUtility+Append.swift */,
-				CEAD44822A5D9739003EF03D /* String+Prefix.swift */,
+				CEFAF8F72A5D9C2B00E9A6A7 /* String+Range.swift */,
+				CEFAF8F82A5D9C2B00E9A6A7 /* AttributedTextUtility+Append.swift */,
+				CEFAF8F92A5D9C2B00E9A6A7 /* String+Prefix.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -184,16 +184,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAD44842A5D9739003EF03D /* MentionTextView.swift in Sources */,
-				CEAD44852A5D9739003EF03D /* MentionParser.swift in Sources */,
-				CEAD44862A5D9739003EF03D /* Mentions.swift in Sources */,
+				CEFAF8FB2A5D9C2B00E9A6A7 /* MentionTextView.swift in Sources */,
+				CEFAF8FC2A5D9C2B00E9A6A7 /* MentionParser.swift in Sources */,
+				CEFAF8FD2A5D9C2B00E9A6A7 /* Mentions.swift in Sources */,
 				CEAD446A2A5D95A8003EF03D /* ViewController.swift in Sources */,
-				CEAD44882A5D9739003EF03D /* AttributedTextUtility+Append.swift in Sources */,
-				CEAD44872A5D9739003EF03D /* String+Range.swift in Sources */,
+				CEFAF8FF2A5D9C2B00E9A6A7 /* AttributedTextUtility+Append.swift in Sources */,
+				CEFAF8FE2A5D9C2B00E9A6A7 /* String+Range.swift in Sources */,
 				CEAD44662A5D95A8003EF03D /* AppDelegate.swift in Sources */,
 				CEAD44682A5D95A8003EF03D /* SceneDelegate.swift in Sources */,
-				CEAD44892A5D9739003EF03D /* String+Prefix.swift in Sources */,
-				CEAD44832A5D9739003EF03D /* MentionLabel.swift in Sources */,
+				CEFAF9002A5D9C2B00E9A6A7 /* String+Prefix.swift in Sources */,
+				CEFAF8FA2A5D9C2B00E9A6A7 /* MentionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
