@@ -7,10 +7,21 @@
 //
 import UIKit
 
-public enum ParserPattern: String {
-    case mention = "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"
-    case html = "\\[\\b(https?://[\\w\\d-]+(\\.[\\w\\d-]+)*\\.[\\w\\d]{2,}(?:/[\\w\\d-./?%&=]*)?)\\b\\]"
-    case custom = "@((?!@).)*"
+public enum ParserPattern {
+    case mention
+    case html
+    case custom(String)
+    
+    var regex: String {
+        switch self {
+        case .mention:
+            return "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"
+        case .html:
+            return "\\[\\b(https?://[\\w\\d-]+(\\.[\\w\\d-]+)*\\.[\\w\\d]{2,}(?:/[\\w\\d-./?%&=]*)?)\\b\\]"
+        case .custom(let customRegex):
+            return "\\[\(customRegex)\\]"
+        }
+    }
 }
 
 extension UIView {
@@ -28,7 +39,7 @@ extension UIView {
             
             let firstFindedText = matchText.substringFromNSRange(match.range)
             
-            let data = firstFindedText.replacingOccurrences(of: pattern.rawValue, with: template, options: .regularExpression, range: firstFindedText.range(of: firstFindedText))
+            let data = firstFindedText.replacingOccurrences(of: pattern.regex, with: template, options: .regularExpression, range: firstFindedText.range(of: firstFindedText))
             
             if data.count > 0 {
                 matchText = matchText.replacing(pattern: pattern, range: match.range, withTemplate: "\(prefixMention)\(template)")
@@ -58,7 +69,7 @@ extension UIView {
 // MARK: - Element
 extension String {
     func getElements(_ pattern: ParserPattern = .mention) -> [NSTextCheckingResult] {
-        guard let elementRegex = try? NSRegularExpression(pattern: pattern.rawValue, options: [.caseInsensitive]) else {
+        guard let elementRegex = try? NSRegularExpression(pattern: pattern.regex, options: [.caseInsensitive]) else {
             return []
         }
         
@@ -66,7 +77,7 @@ extension String {
     }
     
     func getFirstElements(_ pattern: ParserPattern = .mention) -> NSTextCheckingResult? {
-        guard let elementRegex = try? NSRegularExpression(pattern: pattern.rawValue, options: [.caseInsensitive]) else {
+        guard let elementRegex = try? NSRegularExpression(pattern: pattern.regex, options: [.caseInsensitive]) else {
             return nil
         }
         
@@ -74,7 +85,7 @@ extension String {
     }
     
     func replacing(pattern: ParserPattern = .mention, range: NSRange? = nil, withTemplate: String) -> String {
-        guard let regex = try? NSRegularExpression(pattern: pattern.rawValue, options: [.caseInsensitive]) else {
+        guard let regex = try? NSRegularExpression(pattern: pattern.regex, options: [.caseInsensitive]) else {
             return self
         }
         
