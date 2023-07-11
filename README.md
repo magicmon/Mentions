@@ -21,9 +21,9 @@ An easy way to add mentions in UITextView.
 
 ## Requirements
 
-* Swift 5.0
-* Xcode 11
-* iOS 10.0+
+* Swift 5.7
+* Xcode 14.1
+* iOS 13.0+
 
 
 ## Example
@@ -76,7 +76,7 @@ textLabel.tapHandler = { (mention) in
 
 ## Author
 
-magicmon, http://magicmon.github.io
+magicmon, https://magicmon.tistory.com
 
 ## License
 

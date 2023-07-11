@@ -5,6 +5,7 @@
 //  Created by magicmon on 2017. 3. 28..
 //
 //
+import UIKit
 
 public enum ParserPattern: String {
     case mention = "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"

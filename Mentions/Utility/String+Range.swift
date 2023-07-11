@@ -6,6 +6,7 @@
 //
 //
 
+import Foundation
 
 extension String {
     func rangeFromNSRange(_ nsRange : NSRange) -> Range<String.Index>? {

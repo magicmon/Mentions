@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Mentions'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'An easy way to add mentions in UITextView.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'magicmon' => 'sagun25si@gmail.com' }
   s.source           = { :git => 'https://github.com/magicmon/Mentions.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '13.0'
 
-  s.source_files = 'Mentions/Classes/**/*'
+  s.source_files = 'Mentions/**/*'
 end
