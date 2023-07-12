@@ -7,7 +7,7 @@
 //
 import UIKit
 
-public enum ParserPattern {
+public enum ParserPattern: CaseIterable {
     case mention
     case html
     case custom(String)
@@ -21,6 +21,10 @@ public enum ParserPattern {
         case .custom(let customRegex):
             return "\\[\(customRegex)\\]"
         }
+    }
+    
+    public static var allCases: [ParserPattern] {
+        return [.mention, .html]
     }
 }
 
