@@ -9,11 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var textLabel: MentionLabel!
-    
     @IBOutlet weak var mentionTextView: MentionTextView!
-    
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
@@ -21,8 +18,6 @@ class ViewController: UIViewController {
         
         mentionTextView.mentionText = ""
         mentionTextView.deleteType = .cancel // or .delete
-        
-        mentionTextView.becomeFirstResponder()
         
         textLabel.pattern = .mention // or .html
         textLabel.tapHandler = { (mention) in

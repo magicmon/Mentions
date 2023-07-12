@@ -9,14 +9,13 @@
 import UIKit
 
 public class MentionLabel: UILabel {
-
-    fileprivate lazy var textStorage = NSTextStorage()
-    fileprivate lazy var layoutManager = NSLayoutManager()
-    fileprivate lazy var textContainer = NSTextContainer()
+    private lazy var textStorage = NSTextStorage()
+    private lazy var layoutManager = NSLayoutManager()
+    private lazy var textContainer = NSTextContainer()
     
-    fileprivate var heightCorrection: CGFloat = 0
-    fileprivate var clickableRanges: [NSRange] = []
-    fileprivate var selectedRange: NSRange?
+    private var heightCorrection: CGFloat = 0
+    private var clickableRanges: [NSRange] = []
+    private var selectedRange: NSRange?
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
     @IBInspectable public var prefixMention: String = "@"
@@ -67,7 +66,6 @@ public class MentionLabel: UILabel {
         
         setupLabel()
     }
-    
     
     override public func drawText(in rect: CGRect) {
         let range = NSRange(location: 0, length: textStorage.length)
@@ -123,8 +121,6 @@ extension MentionLabel {
         if onTouch(touch) { return }
         super.touchesEnded(touches, with: event)
     }
-    
-    
     
     func onTouch(_ touch: UITouch) -> Bool {
         let location = touch.location(in: self)
