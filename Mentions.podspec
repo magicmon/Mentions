@@ -28,5 +28,5 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/magicmon/Mentions.git', :tag => s.version.to_s }
   s.ios.deployment_target = '13.0'
 
-  s.source_files = 'Mentions/**/*'
+  s.source_files = 'Sources/Mentions/**/*'
 end
