@@ -60,7 +60,7 @@ public class MentionLabel: UILabel {
         isUserInteractionEnabled = true
     }
     
-    func setMentionText(_ text: String?, pattern: ParserPattern = .mention, prefixMention: String = "@") {
+    public func setMentionText(_ text: String?, pattern: ParserPattern = .mention, prefixMention: String = "@") {
         clickableRanges.removeAll()
         
         let (matchText, matchUsers) = self.parse(text, pattern: pattern, template: "$1", prefixMention: prefixMention)

@@ -1,7 +1,7 @@
 # Mentions
 <p>
    <a href="https://developer.apple.com/swift/">
-      <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.7">
+      <img src="https://img.shields.io/badge/Swift-5.7-orange.svg?style=flat" alt="Swift 5.7">
    </a>
    <a href="http://cocoapods.org/pods/Mentions">
       <img src="https://img.shields.io/cocoapods/v/Mentions.svg?style=flat" alt="Version">
@@ -33,7 +33,10 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-#### [CocoaPods](http://cocoapods.org) (recommended)
+#### Swift Package Manager
+The Swift Package Manager automates the distribution of Swift code. To use Mentions with SPM, add a dependency to https://github.com/magicmon/Mentions.git
+
+#### CocoaPods
 
 ````ruby
 use_frameworks!
