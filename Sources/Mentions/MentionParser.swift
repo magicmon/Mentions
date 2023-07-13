@@ -7,9 +7,10 @@
 //
 import UIKit
 
-public enum ParserPattern: CaseIterable {
+public enum ParserPattern {
     case mention
     case html
+    case allText
     case custom(String)
     
     var regex: String {
@@ -18,13 +19,11 @@ public enum ParserPattern: CaseIterable {
             return "\\[([\\w\\d\\sㄱ-ㅎㅏ-ㅣ가-힣.]{1,})\\]"
         case .html:
             return "\\[\\b(https?://[\\w\\d-]+(\\.[\\w\\d-]+)*\\.[\\w\\d]{2,}(?:/[\\w\\d-./?%&=]*)?)\\b\\]"
+        case .allText:
+            return "\\[(.*?)\\]"
         case .custom(let customRegex):
             return "\\[\(customRegex)\\]"
         }
-    }
-    
-    public static var allCases: [ParserPattern] {
-        return [.mention, .html]
     }
 }
 

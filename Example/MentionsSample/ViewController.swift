@@ -16,10 +16,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mentionTextView.prefixMention = "@"
         mentionTextView.mentionText = ""
         mentionTextView.deleteType = .cancel // or .delete
         
-        textLabel.pattern = .mention // or .html
+        textLabel.prefixMention = "@"
+        textLabel.pattern = .allText // or .html
         textLabel.tapHandler = { (mention) in
             let alert = UIAlertController(title: "", message: mention, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

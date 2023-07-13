@@ -32,7 +32,6 @@ public class MentionTextView: UITextView {
             replaceText = replaceText?.replacingOccurrences(of: "[", with: "\\[")
             replaceText = replaceText?.replacingOccurrences(of: "]", with: "\\]")
             
-            
             if highlightUsers.count > 0 {
                 for maps in highlightUsers.reversed() {
                     replaceText = replaceText?.replacing("[\(maps.0)]", range: maps.1)
@@ -106,7 +105,7 @@ extension MentionTextView {
         self.textViewDidChange(self)
         
         // 리스트에 맨션 영역 추가
-        let insertRange = NSRange.init(location: nsrange.location, length: user.utf16.count + 1)
+        let insertRange = NSRange.init(location: nsrange.location, length: user.utf16.count + prefixMention.utf16.count)
         highlightUsers.append((user, insertRange))
         
         // range 정렬(location 순으로 오름차순)
