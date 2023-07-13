@@ -16,8 +16,6 @@ public enum MentionDeleteType {
 public class MentionTextView: UITextView {
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
-    @IBInspectable public var prefixMention: String = "@"
-    public var pattern: ParserPattern = .mention
     
     var replaceValues: (oldText: String?, range: NSRange?, replacementText: String?) = (nil, nil, nil)
     
@@ -26,57 +24,52 @@ public class MentionTextView: UITextView {
     public var deleteType: MentionDeleteType = .cancel
     
     public var mentionText: String? {
-        get {
-            var replaceText = self.text
-            replaceText = replaceText?.replacingOccurrences(of: "\\", with: "\\\\")
-            replaceText = replaceText?.replacingOccurrences(of: "[", with: "\\[")
-            replaceText = replaceText?.replacingOccurrences(of: "]", with: "\\]")
-            
-            if highlightUsers.count > 0 {
-                for maps in highlightUsers.reversed() {
-                    replaceText = replaceText?.replacing("[\(maps.0)]", range: maps.1)
-                }
-                
-                return replaceText
+        var replaceText = self.text
+        replaceText = replaceText?.replacingOccurrences(of: "\\", with: "\\\\")
+        replaceText = replaceText?.replacingOccurrences(of: "[", with: "\\[")
+        replaceText = replaceText?.replacingOccurrences(of: "]", with: "\\]")
+        
+        if highlightUsers.count > 0 {
+            for maps in highlightUsers.reversed() {
+                replaceText = replaceText?.replacing("[\(maps.0)]", range: maps.1)
             }
             
             return replaceText
-        } set {
-            let (matchText, matchUsers) = self.parse(newValue, pattern: pattern, template: "$1", prefixMention: prefixMention)
-            
-            self.text = matchText
-            
-            if let matchUsers = matchUsers {
-                highlightUsers.removeAll()
-                for (user, range) in matchUsers {
-                    highlightUsers.append((user, range))
-                }
-                
-                refresh()
-            }
         }
+        
+        return replaceText
     }
     
     // MARK: override
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self
-        
-        self.autocorrectionType = .no
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         delegate = self
-        
-        self.autocorrectionType = .no
     }
-    
 }
 
 // MARK: - Highlight
 extension MentionTextView {
-    public func insert(to user: String?, with nsrange: NSRange? = nil) {
+    public func setMentionText(_ text: String?, pattern: ParserPattern = .mention, prefixMention: String = "@") {
+        let (matchText, matchUsers) = self.parse(text, pattern: pattern, template: "$1", prefixMention: prefixMention)
+        
+        self.text = matchText
+        
+        if let matchUsers = matchUsers {
+            highlightUsers.removeAll()
+            for (user, range) in matchUsers {
+                highlightUsers.append((user, range))
+            }
+            
+            refresh()
+        }
+    }
+    
+    public func insert(to user: String?, with nsrange: NSRange? = nil, prefixMention: String = "@") {
         guard let user = user else { return }
         
         guard user.utf16.count > 0 else { return }

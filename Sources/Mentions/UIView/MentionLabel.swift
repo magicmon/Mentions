@@ -18,41 +18,8 @@ public class MentionLabel: UILabel {
     private var selectedRange: NSRange?
     
     @IBInspectable public var highlightColor: UIColor = UIColor.blue
-    @IBInspectable public var prefixMention: String = "@"
-    public var pattern: ParserPattern = .mention
     
     public var tapHandler: ((String) -> ())?
-    
-    override public var text: String? {
-        didSet {
-            clickableRanges.removeAll()
-            
-            let (matchText, matchUsers) = self.parse(self.text, pattern: pattern, template: "$1", prefixMention: prefixMention)
-            
-            if let matchText = matchText {
-                var attributes = [NSAttributedString.Key.font: self.font ?? UIFont.systemFontSize,
-                                  NSAttributedString.Key.foregroundColor: self.textColor ?? .black] as [NSAttributedString.Key : Any]
-                let muAttrString = NSAttributedString(string: matchText)
-                textStorage.setAttributedString(muAttrString)
-                textStorage.setAttributes(attributes, range: NSRange(location: 0, length: muAttrString.length))
-                
-                // append attributes
-                if let matchUsers = matchUsers {
-                    for (_, range) in matchUsers {
-                        clickableRanges.append(range)
-                        attributes[NSAttributedString.Key.foregroundColor] = highlightColor
-                        textStorage.setAttributes(attributes, range: range)
-                    }
-                }
-                self.attributedText = muAttrString
-            } else {
-                textStorage.setAttributedString(NSAttributedString())
-                self.attributedText = NSAttributedString()
-            }
-            
-            setNeedsDisplay()
-        }
-    }
     
     // MARK: - init functions
     override init(frame: CGRect) {
@@ -91,6 +58,35 @@ public class MentionLabel: UILabel {
         textContainer.maximumNumberOfLines = 0
         
         isUserInteractionEnabled = true
+    }
+    
+    func setMentionText(_ text: String?, pattern: ParserPattern = .mention, prefixMention: String = "@") {
+        clickableRanges.removeAll()
+        
+        let (matchText, matchUsers) = self.parse(text, pattern: pattern, template: "$1", prefixMention: prefixMention)
+        
+        if let matchText = matchText {
+            var attributes = [NSAttributedString.Key.font: self.font ?? UIFont.systemFontSize,
+                              NSAttributedString.Key.foregroundColor: self.textColor ?? .black] as [NSAttributedString.Key : Any]
+            let muAttrString = NSAttributedString(string: matchText)
+            textStorage.setAttributedString(muAttrString)
+            textStorage.setAttributes(attributes, range: NSRange(location: 0, length: muAttrString.length))
+            
+            // append attributes
+            if let matchUsers = matchUsers {
+                for (_, range) in matchUsers {
+                    clickableRanges.append(range)
+                    attributes[NSAttributedString.Key.foregroundColor] = highlightColor
+                    textStorage.setAttributes(attributes, range: range)
+                }
+            }
+            self.attributedText = muAttrString
+        } else {
+            textStorage.setAttributedString(NSAttributedString())
+            self.attributedText = NSAttributedString()
+        }
+        
+        setNeedsDisplay()
     }
 }
 

@@ -1,7 +1,7 @@
 # Mentions
 <p>
    <a href="https://developer.apple.com/swift/">
-      <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0">
+      <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.7">
    </a>
    <a href="http://cocoapods.org/pods/Mentions">
       <img src="https://img.shields.io/cocoapods/v/Mentions.svg?style=flat" alt="Version">
@@ -48,11 +48,13 @@ var mentionTextView = MentionTextView()
 view.addSubview(mentionTextView)
 
 // initial text with mention.
-mentionTextView.mentionText = "who is your favorite actor or actress? I like [Will Smith] and [Robert Pattinson] the best."
+mentionTextView.setMentionText("www.google.com or [magicmon]", 
+                               pattern: .mention,
+                               prefixMention: "@")
 mentionTextView.deleteType = .cancel // or .delete
 
 // add to mention.
-mentionTextView.insert(to: "Leonardo DiCaprio", with: mentionTextView.selectedRange)
+mentionTextView.insert(to: "anonymous", with: mentionTextView.selectedRange)
 ````
 
 If you want to show the text that contains the mention, set it as follows. 
@@ -61,16 +63,18 @@ If you want to show the text that contains the mention, set it as follows.
 var textLabel = MentionLabel()
 view.addSubview(textLabel)
 
-textLabel.text = mentionTextView.mentionText
+textLabel.setMentionText(mentionTextView.mentionText,
+                         pattern: .mention,
+                         prefixMention: "@")
 
 // or Add the text of the mention inside special characters "[]".
-textLabel.text = "[Brad Pitt]"
-
+textLabel.setMentionText("[Brad Pitt]")
 
 // show the mention text.
 textLabel.tapHandler = { (mention) in
-  let alert = UIAlertView(title: "", message: mention, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK")
-  alert.show()
+  let alert = UIAlertController(title: "", message: mention, preferredStyle: .alert)
+  alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+  self.present(alert, animated: true, completion: nil)
 }
 ````
 

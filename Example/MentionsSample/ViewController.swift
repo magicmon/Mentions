@@ -16,12 +16,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mentionTextView.prefixMention = "@"
-        mentionTextView.mentionText = ""
+        mentionTextView.setMentionText("www.google.com or [magicmon]",
+                                       pattern: .mention,
+                                       prefixMention: "@")
         mentionTextView.deleteType = .cancel // or .delete
+        mentionTextView.highlightColor = .blue
         
-        textLabel.prefixMention = "@"
-        textLabel.pattern = .allText // or .html
+        textLabel.setMentionText("www.google.com or [magicmon]",
+                                 pattern: .mention,
+                                 prefixMention: "@")
+        textLabel.highlightColor = .blue
         textLabel.tapHandler = { (mention) in
             let alert = UIAlertController(title: "", message: mention, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -37,20 +41,20 @@ class ViewController: UIViewController {
 
 extension ViewController {
     @IBAction func pressedClear(_ sender: Any) {
-        mentionTextView.mentionText = ""
-        textLabel.text = ""
+        mentionTextView.setMentionText("")
     }
     
     @IBAction func pressedAdd(_ sender: UIButton) {
-        mentionTextView.insert(to: textField.text)
+        mentionTextView.insert(to: textField.text, prefixMention: "@")
         
         textField.text = nil
-        
         textField.resignFirstResponder()
     }
     
     @IBAction func pressedConfirm(_ sender: UIButton) {
-        textLabel.text = mentionTextView.mentionText
+        textLabel.setMentionText(mentionTextView.mentionText,
+                                 pattern: .allText,
+                                 prefixMention: "@")
     }
 }
 
