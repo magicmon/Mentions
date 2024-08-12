@@ -76,7 +76,7 @@ extension MentionTextView {
         
         var nsrange = nsrange ?? self.selectedRange
         
-        // 추가하려는 텍스트의 range 위치 셋팅. 범위가 넘어가면 해당 범위까지만 셋팅.
+        // Setting the range position for the text to be added. If the range exceeds, set it only up to that range.
         var rangeLength = nsrange.length
         if nsrange.location + nsrange.length > text.utf16.count {
             rangeLength = nsrange.length - (nsrange.location + nsrange.length - text.utf16.count)
@@ -171,12 +171,12 @@ extension MentionTextView: UITextViewDelegate {
                 } else {
                     // 내 영역을 포함하지 않음
                     
-                    // 내 앞쪽에서 시작해서 앞쪽에서 끝나는지
+                    // 내 앞쪽에서 시작해서 앞쪽에서 끝나는지 확인
                     if range.location + range.length <= oldUser.1.location {
                         let newRange = NSRange.init(location: max(0, oldUser.1.location + (replacementText.utf16.count - range.length)), length: oldUser.1.length)
                         newUsers.append((oldUser.0, newRange))
                     } else {
-                        // 내 뒤쪽에서 시작해서 뒤쪽에서 끝나는지
+                        // 내 뒤쪽에서 시작해서 뒤쪽에서 끝나는지 확인
                         newUsers.append(oldUser)
                     }
                 }
@@ -220,9 +220,12 @@ extension MentionTextView: UITextViewDelegate {
                     if removeRange.location + removeRange.length > oldUser.1.location {
                         continue
                     } else {
+                        let replacedText = replaceValues.oldText?.replacing("", range: range).count ?? 0
+                        let diff = max(0, replacedText - textView.text.count)
+                        
                         // Erasing the mention from my front
                         // As much as you erase, the mention is positioned forward.
-                        let newRange = NSRange(location: max(0, oldUser.1.location - removeRange.length), length: oldUser.1.length)
+                        let newRange = NSRange(location: max(0, oldUser.1.location - removeRange.length - diff), length: oldUser.1.length)
                         newUsers.append((oldUser.0, newRange))
                     }
                 }
